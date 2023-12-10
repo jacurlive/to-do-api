@@ -3,8 +3,7 @@ from .views import ToDoView, ToDoDestroy, ToDoUpdate, ToDoDetail
 
 
 urlpatterns = [
-    path('todo/', ToDoView.as_view()),
-    path('todo/<int:pk>/', ToDoUpdate.as_view()),
-    path('todo/delete/<int:pk>/', ToDoDestroy.as_view()),
-    path('todo/detail/<int:pk>/', ToDoDetail.as_view())
+    path('todo/', ToDoView.as_view()), # Read and Create
+    path('todo/delete/<int:pk>/', ToDoDestroy.as_view()), # Delete and Read
+    path('todo/detail/<int:pk>/', ToDoDetail.as_view()) # Update and Read
 ]

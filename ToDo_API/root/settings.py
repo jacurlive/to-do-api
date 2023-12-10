@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # installed
     'rest_framework',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [

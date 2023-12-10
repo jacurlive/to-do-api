@@ -23,5 +23,3 @@ class ToDoDetail(generics.RetrieveUpdateAPIView):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
 
-
-
