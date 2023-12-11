@@ -58,4 +58,6 @@ venv.bak/
 !.vscode/extensions.json 
 .history
 
-*/migrations/
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
