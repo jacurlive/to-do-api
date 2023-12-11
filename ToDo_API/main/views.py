@@ -28,3 +28,18 @@ class FolderAPIView(generics.ListCreateAPIView):
     queryset = Folder.objects.all()
     serializer_class = FolderSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+# Read for Folder items
+class FolderToDoAPIView(generics.ListAPIView):
+    serializer_class = ToDoSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        pk = self.kwargs.get('pk', None)
+        if pk:
+            try:
+                folder = Folder.objects.get(pk=pk)
+                return ToDo.objects.filter(folder=folder)
+            except Folder.DoesNotExist:
+                return Folder.objects.none()
