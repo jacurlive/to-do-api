@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions
 from .models import ToDo, Folder
-from .serializers import ToDoSerializer, FolderSerializer
+from .serializers import ToDoSerializer, ToDoDetailSerializer, FolderSerializer
 
 
 # Get list and Create
@@ -10,20 +10,14 @@ class ToDoView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 
-# Get detail and Delete with pk
-class ToDoDestroy(generics.RetrieveDestroyAPIView):
-    queryset = ToDo.objects.all()
-    serializer_class = ToDoSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
 # Get detail and Update with pk
-class ToDoDetail(generics.RetrieveUpdateAPIView):
+class ToDoDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = ToDo.objects.all()
-    serializer_class = ToDoSerializer
+    serializer_class = ToDoDetailSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
+# Get list and Create folder
 class FolderAPIView(generics.ListCreateAPIView):
     queryset = Folder.objects.all()
     serializer_class = FolderSerializer
@@ -43,3 +37,9 @@ class FolderToDoAPIView(generics.ListAPIView):
                 return ToDo.objects.filter(folder=folder)
             except Folder.DoesNotExist:
                 return Folder.objects.none()
+
+
+class FolderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Folder.objects.all()
+    serializer_class = FolderSerializer
+    permission_classes = [permissions.IsAuthenticated]
