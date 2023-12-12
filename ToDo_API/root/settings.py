@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # apps
     'main',
+    'user',
+
     # installed
     'rest_framework',
     'drf_yasg'
@@ -126,6 +128,6 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'user.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
