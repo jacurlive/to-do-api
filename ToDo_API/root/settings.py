@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # apps
     'main',
+    'auth',
 
     # installed
     'rest_framework',
