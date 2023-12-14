@@ -1,4 +1,6 @@
 */__pycache__/
+*/migrations/*
+
 
 # Django #
 *.log
@@ -57,5 +59,3 @@ venv.bak/
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
-
-*/migrations/*
