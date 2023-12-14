@@ -58,5 +58,4 @@ venv.bak/
 !.vscode/extensions.json 
 .history
 
-/**/**/migrations/**
-
+*/migrations/*
