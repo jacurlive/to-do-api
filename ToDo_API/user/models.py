@@ -18,7 +18,6 @@ class UserManager(BaseUserManager):
         
 
 
-
 class PlainTextField(models.TextField):
     def get_prep_value(self, value):
         return value
