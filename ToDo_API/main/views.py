@@ -27,7 +27,7 @@ class FolderAPIView(generics.ListCreateAPIView):
 # Read for Folder items
 class FolderToDoAPIView(generics.ListAPIView):
     serializer_class = ToDoSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         pk = self.kwargs.get('pk', None)
