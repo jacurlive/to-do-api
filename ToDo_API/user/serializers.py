@@ -31,26 +31,26 @@ class RegisterSerializers(serializers.ModelSerializer):
         model = User
         fields = ("username", "password", "password2", "email", "phone", "first_name", "last_name")
         extra_kwargs = {
-            'first_name': {'required': False},
-            'last_name': {'required': False}
+            "first_name": {"required": False},
+            "last_name": {"required": False}
         }
 
-        def validate(self, attrs):
-            if attrs['password'] != ['password2']:
-                raise serializers.ValidationError({"password": "Password fields didn't match."})
-            
-            return attrs
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({"password": "Password is not equal."})
+                
+        return attrs
         
-        def create(self, validated_data):
-            user = User.objects.create(
-                username=validated_data['username'],
-                email=validated_data['email'],
-                phone=validated_data['phone'],
-                first_name=validated_data['first_name'],
-                last_name=validated_data['last_name']
-            )
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            phone=validated_data['phone'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', '')
+        )
 
-            user.set_password(validated_data['password'])
-            user.save()
+        user.set_password(validated_data['password'])
+        user.save()
 
-            return user
+        return user
