@@ -1,6 +1,5 @@
 import django
-import os
-import random 
+import os 
 from faker import Faker
 from django.db import IntegrityError
 

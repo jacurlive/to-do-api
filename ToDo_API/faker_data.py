@@ -12,7 +12,7 @@ def generate_fake_data(num: int) -> None:
     for _ in range(num):
         folder_instance = Folder.objects.get(pk=random.randint(1, 2))
         
-        todo = ToDo.objects.create(title=fake.name(), description=fake.text(), folder=folder_instance)
+        todo = ToDo.objects.create(title=fake.text(), description=fake.text(), folder=folder_instance)
         todo.save()
         print(f"Created: {todo}")
 
@@ -23,4 +23,4 @@ if __name__ == "__main__":
 
     django.setup()
 
-    generate_fake_data(101)
+    generate_fake_data(1001)
