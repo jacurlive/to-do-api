@@ -1,5 +1,6 @@
 from rest_framework import generics, permissions
 from .models import ToDo, Folder
+from .pagination import PostLimitOffsetPagination
 from .serializers import ToDoSerializer, ToDoDetailSerializer, FolderSerializer
 
 
@@ -8,6 +9,7 @@ class ToDoView(generics.ListCreateAPIView):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
     # permission_classes = [permissions.IsAuthenticated]
+    pagination_class = PostLimitOffsetPagination
 
 
 # Get detail and Update with pk
