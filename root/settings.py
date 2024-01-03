@@ -25,8 +25,11 @@ SECRET_KEY = 'django-insecure-0@+8ap=@hjvd@&$4z*joejz0*v2f7hft)wg7-x*tfsskwqryek
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Application definition
 
@@ -42,8 +45,11 @@ INSTALLED_APPS = [
     'main',
     'user',
 
-    # installed
+    # rest_framework
     'rest_framework',
+    'rest_framework.authtoken',
+
+    # documentation
     'drf_yasg'
 ]
 
@@ -110,7 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         )
 }
 
@@ -134,7 +142,5 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
-AUTH_USER_MODEL = 'user.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
