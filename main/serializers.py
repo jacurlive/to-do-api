@@ -11,10 +11,12 @@ class FolderSerializer(serializers.ModelSerializer):
 class ToDoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDo
-        fields = ("id", "title", "completed")
+        fields = ("id", "title", "completed", "user")
+        read_only_fields = ("user",)
 
 
 class ToDoDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDo
         fields = "__all__"
+        read_only_fields = ("user",)
