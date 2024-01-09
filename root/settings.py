@@ -34,6 +34,9 @@ LOGOUT_REDIRECT_URL = "/"
 # Application definition
 
 INSTALLED_APPS = [
+    # installed
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -146,3 +149,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/api-auth/login/'
+
+
