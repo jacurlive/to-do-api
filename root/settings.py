@@ -150,4 +150,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/api-auth/login/'
 
+JAZZMIN_SETTINGS = {
+    "site_title": "ToDo Admin",
 
+    "site_header": "ToDo",
+
+    "site_brand": "ToDo",
+
+    "welcome_sign": "Welcome Admin",
+
+    "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Главная",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # external url that opens in a new window (Permissions can be added)
+        {"name": "Поддержка", "url": "https://t.me/jacurlive", "new_window": True},
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+    ],
+
+}
