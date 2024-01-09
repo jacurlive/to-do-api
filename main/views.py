@@ -2,14 +2,13 @@ from rest_framework import generics, permissions
 from .models import ToDo, Folder
 from .pagination import PostLimitOffsetPagination
 from .serializers import ToDoSerializer, ToDoDetailSerializer, FolderSerializer
-from .permissions import IsOwner
+from django.contrib.auth.decorators import login_required
 
 
 # Get list and Create
 class ToDoView(generics.ListCreateAPIView):
     queryset = ToDo.objects.all()
     serializer_class = ToDoDetailSerializer
-    permission_classes = [IsOwner]
     pagination_class = PostLimitOffsetPagination
 
     def get_serializer_context(self):
@@ -17,6 +16,9 @@ class ToDoView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return ToDo.objects.filter(user=self.request.user)
 
 
 # Get detail and Update with pk
