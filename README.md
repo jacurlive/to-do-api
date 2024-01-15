@@ -7,7 +7,7 @@
 - Python
 - Django
 
-## Usage
+## Usage without docker-compose
 
 - Clone the repo
     ```
@@ -45,4 +45,20 @@
 - Run
     ```
     python manage.py runserver
+    ```
+
+## Usage with docker-compose
+- Clone the repo
+    ```
+    git clone https://github.com/jacurlive/to-do-api.git
+    ```
+
+- Go to directory
+    ```
+    cd to-do-api
+    ```
+
+- Run docker-compose
+    ```
+    docker-compose up
     ```
