@@ -136,3 +136,5 @@ dmypy.json
 !**/migrations/__init__.py
 
 .idea/
+faker_data.py
+faker_users.py
