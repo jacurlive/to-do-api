@@ -1,8 +1,8 @@
 from rest_framework import generics, permissions
+
 from .models import ToDo, Folder
 from .pagination import PostLimitOffsetPagination
 from .serializers import ToDoSerializer, FolderSerializer
-from django.contrib.auth.decorators import login_required
 
 
 # Get list and Create
@@ -40,7 +40,15 @@ class ToDoDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 class FolderAPIView(generics.ListCreateAPIView):
     queryset = Folder.objects.all()
     serializer_class = FolderSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_context(self):
+        return {"request": self.request}
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return Folder.objects.filter(user=self.request.user)
 
 
 # Read for Folder items
@@ -49,12 +57,18 @@ class FolderToDoAPIView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = PostLimitOffsetPagination
 
+    def get_serializer_context(self):
+        return {"request": self.request}
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
     def get_queryset(self):
         pk = self.kwargs.get('pk', None)
         if pk:
             try:
                 folder = Folder.objects.get(pk=pk)
-                return ToDo.objects.filter(folder=folder)
+                return ToDo.objects.filter(folder=folder, user=self.request.user)
             except Folder.DoesNotExist:
                 return Folder.objects.none()
 
