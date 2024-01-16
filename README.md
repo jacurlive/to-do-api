@@ -6,8 +6,9 @@
 
 - Python
 - Django
+- Docker
 
-## Usage without docker-compose
+## Usage without docker
 
 - Clone the repo
     ```
@@ -23,11 +24,11 @@
     ```
     python -m venv venv
     ```
-    ###### windows cmd
+  ###### windows cmd
     ```
     venv\Scrips\activate
     ```
-    ###### linux terminal
+  ###### linux terminal
     ```
     . venv\bin\activate
     ```
@@ -47,7 +48,8 @@
     python manage.py runserver
     ```
 
-## Usage with docker-compose
+## Usage with docker
+
 - Clone the repo
     ```
     git clone https://github.com/jacurlive/to-do-api.git
