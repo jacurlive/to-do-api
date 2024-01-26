@@ -1,4 +1,6 @@
-from rest_framework import generics, permissions
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 from .models import ToDo, Folder
 from .pagination import PostLimitOffsetPagination
@@ -10,6 +12,7 @@ class ToDoView(generics.ListCreateAPIView):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
     pagination_class = PostLimitOffsetPagination
+    permission_classes = [IsAuthenticated]
 
     def get_serializer_context(self):
         return {"request": self.request}
@@ -54,7 +57,7 @@ class FolderAPIView(generics.ListCreateAPIView):
 # Read for Folder items
 class FolderToDoAPIView(generics.ListAPIView):
     serializer_class = ToDoSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     pagination_class = PostLimitOffsetPagination
 
     def get_serializer_context(self):
@@ -76,4 +79,4 @@ class FolderToDoAPIView(generics.ListAPIView):
 class FolderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Folder.objects.all()
     serializer_class = FolderSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAuthenticated]
