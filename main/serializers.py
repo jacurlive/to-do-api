@@ -16,7 +16,7 @@ class FolderSerializer(serializers.ModelSerializer):
 
 
 class ToDoSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField()
+    user = serializers.ReadOnlyField(source="user.username")
 
     class Meta:
         model = ToDo
