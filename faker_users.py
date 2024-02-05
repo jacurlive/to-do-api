@@ -5,7 +5,7 @@ from django.db import IntegrityError
 
 
 def generate_fake_users(num: int) -> None:
-    from user.models import User
+    from django.contrib.auth.models import User
 
     fake = Faker()
 
@@ -15,7 +15,7 @@ def generate_fake_users(num: int) -> None:
 
         while True:
             try:
-                user = User.objects.create(username=username, phone=fake.phone_number(), email="test@test.com", password=fake.password(length=8))
+                user = User.objects.create(username=username, email="test@test.com", password=fake.password(length=8))
                 user.save()
                 print(f"Created: {user}")
                 break
